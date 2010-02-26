@@ -6,8 +6,9 @@ rm predicates.html
 
 cython -a predicates.pyx
 
-gcc -O2 -o predicates_init predicates_init.c
-./predicates_init > predicates_init.h
+# we could generate static info, instead of calling exactinit()
+# gcc -O2 -o predicates_init predicates_init.c
+# ./predicates_init > predicates_init.h
 
 gcc -O2 -Wall -fPIC -fstrict-aliasing -c shewchuk.c
 gcc -I/usr/include/python2.6 -O2 -Wall -fstrict-aliasing -fPIC -c predicates.c

@@ -6,6 +6,9 @@ cdef extern from "stdlib.h":
 cdef extern from "shewchuk.h":
     double c_orient2d "orient2d" (double *pa, double *pb, double *pc)
     double c_incircle "incircle" (double *pa, double *pb, double *pc, double *pd)
+    void exactinit()
+
+exactinit()
 
 def orient2d(pa, pb, pc):
     return orient2d_(pa[0], pa[1], pb[0], pb[1], pc[0], pc[1])
@@ -39,7 +42,7 @@ cdef inline double orient2d_(double a, double b, double c, double d, double e, d
 def incircle(pa, pb, pc, pd):
     return incircle_(pa[0], pa[1], pb[0], pb[1], pc[0], pc[1], pd[0], pd[1])
 
-cdef inline incircle_(double a, double b, double c, double d, double e, double f, double g, double h):
+cdef inline double incircle_(double a, double b, double c, double d, double e, double f, double g, double h):
     cdef double result
     cdef double *p0 
     cdef double *p1
@@ -59,8 +62,8 @@ cdef inline incircle_(double a, double b, double c, double d, double e, double f
     p2[1] = f
 
     p3 = <double*>malloc(2*sizeof(double))
-    p3[0] = e
-    p3[1] = f
+    p3[0] = g
+    p3[1] = h
         
     result = c_incircle(p0, p1, p2, p3)
     
