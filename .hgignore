@@ -1,0 +1,7 @@
+
+syntax: regexp
+\.so$
+syntax: regexp
+^src/predicates\.egg-info$
+syntax: regexp
+^build$
