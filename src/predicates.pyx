@@ -36,7 +36,6 @@ cdef inline double orient2d_(double a, double b, double c, double d, double e, d
     free(p0)
     free(p1)
     free(p2)
-    print result == 0.0
     return result
 
 def incircle(pa, pb, pc, pd):

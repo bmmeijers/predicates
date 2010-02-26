@@ -118,7 +118,10 @@
 #include <math.h>
 #include <sys/time.h>
 
+/* MM */
 #include "shewchuk.h"
+#include <fpu_control.h>
+/* MM */
 
 /* On some machines, the exact arithmetic routines might be defeated by the  */
 /*   use of internal extended precision floating-point registers.  Sometimes */
@@ -647,6 +650,16 @@ void exactinit()
   REAL half;
   REAL check, lastcheck;
   int every_other;
+  
+/* MM */
+int cword;
+#ifdef SINGLE
+cword = 4210;                 /* set FPU control word for single precision */
+#else /* not SINGLE */
+cword = 4722;                 /* set FPU control word for double precision */
+#endif /* not SINGLE */
+_FPU_SETCW(cword);
+/* MM */
 
   every_other = 1;
   half = 0.5;
