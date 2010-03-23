@@ -11,7 +11,7 @@ cdef extern from "shewchuk.h":
 exactinit()
 
 def orient2d(pa, pb, pc):
-    return orient2d_(pa[0], pa[1], pb[0], pb[1], pc[0], pc[1])
+    return orient2d_(pa.x, pa.y, pb.x, pb.y, pc.x, pc.y)
 
 cdef inline double orient2d_(double a, double b, double c, double d, double e, double f):
     cdef double result
@@ -39,7 +39,7 @@ cdef inline double orient2d_(double a, double b, double c, double d, double e, d
     return result
 
 def incircle(pa, pb, pc, pd):
-    return incircle_(pa[0], pa[1], pb[0], pb[1], pc[0], pc[1], pd[0], pd[1])
+    return incircle_(pa.x, pa.y, pb.x, pb.y, pc.x, pc.y, pd.x, pd.y)
 
 cdef inline double incircle_(double a, double b, double c, double d, double e, double f, double g, double h):
     cdef double result
