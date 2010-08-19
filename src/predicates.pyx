@@ -1,17 +1,18 @@
-cdef extern from "stdlib.h":
-    void *malloc(unsigned int)
-    void free(void*)
-    int sizeof()
-    
-cdef extern from "shewchuk.h":
-    double c_orient2d "orient2d" (double *pa, double *pb, double *pc)
-    double c_incircle "incircle" (double *pa, double *pb, double *pc, double *pd)
-    void exactinit()
-
 exactinit()
 
-def orient2d(pa, pb, pc):
-    return orient2d_(pa.x, pa.y, pb.x, pb.y, pc.x, pc.y)
+cpdef orient2d( pa,  pb,  pc):
+    """ 
+    Direction from pa to pc, via pb, where returned value is as follows:
+    
+    left : +
+    straight : 0.
+    right : -
+    
+    Twice signed area under triangle pa, pb, pc
+    """
+    return orient2d_(pa[0], pa[1],
+                     pb[0], pb[1],
+                     pc[0], pc[1])
 
 cdef inline double orient2d_(double a, double b, double c, double d, double e, double f):
     cdef double result
@@ -38,8 +39,8 @@ cdef inline double orient2d_(double a, double b, double c, double d, double e, d
     free(p2)
     return result
 
-def incircle(pa, pb, pc, pd):
-    return incircle_(pa.x, pa.y, pb.x, pb.y, pc.x, pc.y, pd.x, pd.y)
+cpdef incircle( pa,  pb,  pc,  pd):
+    return incircle_(pa[0], pa[1], pb[0], pb[1], pc[0], pc[1], pd[0], pd[1]) 
 
 cdef inline double incircle_(double a, double b, double c, double d, double e, double f, double g, double h):
     cdef double result
