@@ -1,5 +1,0 @@
-INSTALL
-=======
-
-- Run ``python setup.py build_ext -i'' or ``python setup.py develop''
-- For system-wide installation: ``sudo python setup.py install''

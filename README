@@ -1,0 +1,11 @@
+A Python wrapper around routines for Arbitrary Precision Floating-point 
+Arithmetic and Fast Robust Geometric Predicates 
+
+For documentation, run Sphinx_:
+
+	cd doc
+	make clean; make html
+
+And then you can find the documentation in ``doc/build/``.
+
+.. _Sphinx: http://sphinx.pocoo.org/

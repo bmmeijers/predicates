@@ -11,5 +11,5 @@ cdef extern from "shewchuk.h":
 cpdef orient2d( pa,  pb,  pc)
 cpdef incircle( pa,  pb,  pc,  pd)
 
-cdef inline double orient2d_(double a, double b, double c, double d, double e, double f)
-cdef inline double incircle_(double a, double b, double c, double d, double e, double f, double g, double h)
+cdef double orient2d_(double a, double b, double c, double d, double e, double f)
+cdef double incircle_(double a, double b, double c, double d, double e, double f, double g, double h)
