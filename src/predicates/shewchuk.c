@@ -116,14 +116,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+/*
 #include <sys/time.h>
+*/
+
+#ifdef WINDOWS
+#include <float.h>
+#endif /* CPU86 */
+
+#ifdef LINUX
+#include <fpu_control.h>
+#endif /* LINUX */
 
 /* MM */
 #include "shewchuk.h"
-void set_ctrlword(int v)
-{
-  asm("fldcw %0" :: "m" (v));
-}
 /* MM */
 
 /* On some machines, the exact arithmetic routines might be defeated by the  */
@@ -138,7 +144,6 @@ void set_ctrlword(int v)
 #define INEXACT                          /* Nothing */
 /* #define INEXACT volatile */
 
-#define REAL double                      /* float or double */
 #define REALPRINT doubleprint
 #define REALRAND doublerand
 #define NARROWRAND narrowdoublerand
@@ -366,14 +371,14 @@ void set_ctrlword(int v)
   Square(a1, _j, _1); \
   Two_Two_Sum(_j, _1, _l, _2, x5, x4, x3, x2)
 
-REAL splitter;     /* = 2^ceiling(p / 2) + 1.  Used to split floats in half. */
-REAL epsilon;                /* = 2^(-p).  Used to estimate roundoff errors. */
+static REAL splitter;     /* = 2^ceiling(p / 2) + 1.  Used to split floats in half. */
+static REAL epsilon;                /* = 2^(-p).  Used to estimate roundoff errors. */
 /* A set of coefficients used to calculate maximum roundoff errors.          */
-REAL resulterrbound;
-REAL ccwerrboundA, ccwerrboundB, ccwerrboundC;
-REAL o3derrboundA, o3derrboundB, o3derrboundC;
-REAL iccerrboundA, iccerrboundB, iccerrboundC;
-REAL isperrboundA, isperrboundB, isperrboundC;
+static REAL resulterrbound;
+static REAL ccwerrboundA, ccwerrboundB, ccwerrboundC;
+static REAL o3derrboundA, o3derrboundB, o3derrboundC;
+static REAL iccerrboundA, iccerrboundB, iccerrboundC;
+static REAL isperrboundA, isperrboundB, isperrboundC;
 
 /*****************************************************************************/
 /*                                                                           */
@@ -500,7 +505,7 @@ REAL *e;
 /*                 random exponent in [0, 511].                              */
 /*                                                                           */
 /*****************************************************************************/
-
+/*
 double doublerand(void)
 {
   double result;
@@ -519,6 +524,7 @@ double doublerand(void)
   }
   return result;
 }
+*/
 
 /*****************************************************************************/
 /*                                                                           */
@@ -526,7 +532,7 @@ double doublerand(void)
 /*                       and a random exponent in [0, 7].                    */
 /*                                                                           */
 /*****************************************************************************/
-
+/*
 double narrowdoublerand(void)
 {
   double result;
@@ -545,13 +551,13 @@ double narrowdoublerand(void)
   }
   return result;
 }
-
+*/
 /*****************************************************************************/
 /*                                                                           */
 /*  uniformdoublerand()   Generate a double with random 53-bit significand.  */
 /*                                                                           */
 /*****************************************************************************/
-
+/*
 double uniformdoublerand(void)
 {
   double result;
@@ -562,14 +568,14 @@ double uniformdoublerand(void)
   result = (double) (a - 1073741824) * 8388608.0 + (double) (b >> 8);
   return result;
 }
-
+*/
 /*****************************************************************************/
 /*                                                                           */
 /*  floatrand()   Generate a float with random 24-bit significand and a      */
 /*                random exponent in [0, 63].                                */
 /*                                                                           */
 /*****************************************************************************/
-
+/*
 float floatrand(void)
 {
   float result;
@@ -587,14 +593,14 @@ float floatrand(void)
   }
   return result;
 }
-
+*/
 /*****************************************************************************/
 /*                                                                           */
 /*  narrowfloatrand()   Generate a float with random 24-bit significand and  */
 /*                      a random exponent in [0, 7].                         */
 /*                                                                           */
 /*****************************************************************************/
-
+/*
 float narrowfloatrand(void)
 {
   float result;
@@ -612,13 +618,13 @@ float narrowfloatrand(void)
   }
   return result;
 }
-
+*/
 /*****************************************************************************/
 /*                                                                           */
 /*  uniformfloatrand()   Generate a float with random 24-bit significand.    */
 /*                                                                           */
 /*****************************************************************************/
-
+/*
 float uniformfloatrand(void)
 {
   float result;
@@ -628,7 +634,7 @@ float uniformfloatrand(void)
   result = (float) ((a - 1073741824) >> 6);
   return result;
 }
-
+*/
 /*****************************************************************************/
 /*                                                                           */
 /*  exactinit()   Initialize the variables used for exact arithmetic.        */
@@ -648,11 +654,49 @@ float uniformfloatrand(void)
 /*                                                                           */
 /*****************************************************************************/
 
+#ifdef OTHER
+void set_ctrlword(int v)
+{
+	asm("fldcw %0" :: "m" (v));
+}
+#endif /* OTHER */
+
 void exactinit(void)
 {
   REAL half;
   REAL check, lastcheck;
   int every_other;
+
+#if defined LINUX || defined OTHER
+  int cword;
+#endif /* LINUX or OTHER */
+
+#ifdef WINDOWS
+  #ifdef SINGLE
+  _control87(_PC_24, _MCW_PC); /* Set FPU control word for single precision. */
+  #else /* not SINGLE */
+  _control87(_PC_53, _MCW_PC); /* Set FPU control word for double precision. */
+  #endif /* not SINGLE */
+#endif /* CPU86 */
+
+#if defined LINUX || defined OTHER
+  #ifdef SINGLE
+  /*  cword = 4223; */
+  cword = 4210;                 /* set FPU control word for single precision */
+  #else /* not SINGLE */
+  /*  cword = 4735; */
+  cword = 4722;                 /* set FPU control word for double precision */
+  #endif /* not SINGLE */
+
+  #ifdef LINUX
+  _FPU_SETCW(cword);
+  #endif
+
+  #ifdef OTHER
+  set_ctrlword(cword);
+  #endif
+#endif /* LINUX */
+  
   every_other = 1;
   half = 0.5;
   epsilon = 1.0;
@@ -1912,6 +1956,18 @@ REAL permanent)
   REAL *finnow, *finother, *finswap;
   REAL fin1[192], fin2[192];
   int finlength;
+
+  ////////////////////////////////////////////////////////
+  // To avoid uninitialized warnings reported by valgrind.
+  // MM: copied from tetgen
+  int i;
+  for (i = 0; i < 8; i++) {
+    adet[i] = bdet[i] = cdet[i] = 0.0;
+  }
+  for (i = 0; i < 16; i++) {
+    abdet[i] = 0.0;
+  }
+  ////////////////////////////////////////////////////////
 
   REAL adxtail, bdxtail, cdxtail;
   REAL adytail, bdytail, cdytail;

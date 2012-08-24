@@ -1,8 +1,7 @@
-//#define FPU_ROUND_DOUBLE
-//#define FPU_RESTORE
+#define REAL double
 
-double orient2d(double *pa, double *pb, double *pc);
-double incircle(double *pa, double *pb, double *pc, double *pd);
+double orient2d(REAL *pa, REAL *pb, REAL *pc);
+double incircle(REAL *pa, REAL *pb, REAL *pc, REAL *pd);
 
 void exactinit(void);
 
