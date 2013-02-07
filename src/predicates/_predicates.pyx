@@ -1,4 +1,4 @@
-exactinit()
+#exactinit()
 
 cpdef orient2d( pa,  pb,  pc):
     """ 
