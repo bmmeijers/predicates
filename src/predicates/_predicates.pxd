@@ -6,7 +6,6 @@ cdef extern from "stdlib.h":
 cdef extern from "shewchuk.h":
     double c_orient2d "orient2d" (double *pa, double *pb, double *pc)
     double c_incircle "incircle" (double *pa, double *pb, double *pc, double *pd)
-    void exactinit()
 
 cpdef orient2d( pa,  pb,  pc)
 cpdef incircle( pa,  pb,  pc,  pd)
