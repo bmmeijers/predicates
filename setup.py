@@ -32,27 +32,29 @@ def get_version():
 # Platform specifics
 #
 #Linux (2.x and 3.x)     'linux2'
-#Windows     'win32'
-#Windows/Cygwin     'cygwin'
-#Mac OS X     'darwin'
-#OS/2     'os2'
-#OS/2 EMX     'os2emx'
-#RiscOS     'riscos'
-#AtheOS     'atheos'
-macros = [('OTHER', 1)]
+#Windows                 'win32'
+#Windows/Cygwin          'cygwin'
+#Mac OS X                'darwin'
+#OS/2                    'os2'
+#OS/2 EMX                'os2emx'
+#RiscOS                  'riscos'
+#AtheOS                  'atheos'
+macros = []
 args = []
 if sys.platform.startswith('win32') or sys.platform.startswith('cygwin'):
-    macros = [('WINDOWS', 1)]
+    macros = [("CPU86", 1)]
 elif sys.platform.startswith('linux'):
-    macros = [('LINUX', 1)]
-    args = ['-frounding-math']
+    macros = [('LINUX',1), ]
+    # full ieee754 compliance
+    # see: https://gcc.gnu.org/wiki/FloatingPointMath
+    args = ["-frounding-math","-fsignaling-nans", "-O0"]
 
 setup(
     name = "predicates",
     version = get_version(),
     author = "Martijn Meijers",
     author_email = "b dot m dot meijers at tudelft dot nl",
-    license = "",
+    license = "MIT license",
     description = "",
     url = "",
     package_dir = {'':'src'},
@@ -61,7 +63,7 @@ setup(
     ext_modules = [Extension("predicates._predicates", 
         define_macros = macros,
         sources = ["src/predicates/_predicates.pyx", 
-            "src/predicates/shewchuk.c"],
+            "src/predicates/pred.c"],
         extra_compile_args=args,
         extra_link_args=args,
         include_dirs=['src/predicates'])],

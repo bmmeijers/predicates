@@ -1,4 +1,4 @@
-from predicates import orient2d 
+from predicates import orient2d
 
 def determinant(xa, ya, xb, yb, xc, yc):
     """Returns determinant of three points
