@@ -9,7 +9,3 @@ __creation_date__ = '2010-02-26'
 from _predicates import orient2d, incircle
 
 __all__ = ["orient2d", "incircle"]
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

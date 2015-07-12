@@ -145,7 +145,12 @@
 #define INEXACT                          /* Nothing */
 /* #define INEXACT volatile */
 
-#define REAL double                      /* float or double */
+#ifdef SINGLE
+  #define REAL float                      /* float or double */
+#else /* not SINGLE */
+  #define REAL double
+#endif /* not SINGLE */
+
 #define REALPRINT doubleprint
 #define REALRAND doublerand
 #define NARROWRAND narrowdoublerand
