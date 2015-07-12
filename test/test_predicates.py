@@ -1,5 +1,5 @@
 import unittest
-from predicates import orient2d, incircle
+from geompreds import orient2d, incircle
 
 class TestOrient2d(unittest.TestCase):
 

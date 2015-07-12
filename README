@@ -1,11 +1,42 @@
-A Python wrapper around routines for Arbitrary Precision Floating-point 
-Arithmetic and Fast Robust Geometric Predicates 
+README
+======
 
-For documentation, run Sphinx_:
+geompreds - A Python wrapper for 2D predicates of Jonathan Richard Shewchuk
 
-	cd doc
-	make clean; make html
+Installation
+------------
 
-And then you can find the documentation in ``doc/build/``.
+- Download the source
+- Run `python setup.py install` (or `python setup.py develop`)
 
-.. _Sphinx: http://sphinx.pocoo.org/
+
+Usage
+-----
+
+
+Changelog
+---------
+See `CHANGES.txt`.
+
+
+Bug reports
+-----------
+If you discover any bugs, feel free to create an issue on Bitbucket.
+
+Please add as much information as possible to help us fixing the possible bug.
+We also encourage you to help even more by forking and sending us a pull
+request.
+
+The issue tracker lives `here <https://bitbucket.org/bmmeijers/geompreds/issues>`_.
+
+
+Maintainers
+-----------
+
+- `Martijn Meijers <https://bitbucket.org/bmmeijers>`_
+
+
+License
+-------
+
+`MIT License <https://www.tldrlegal.com/l/mit>`_

@@ -6,6 +6,6 @@ __license__ = 'MIT License'
 __author__ = 'Martijn Meijers'
 __creation_date__ = '2010-02-26'
 
-from _predicates import orient2d, incircle
+from _geompreds import orient2d, incircle
 
 __all__ = ["orient2d", "incircle"]
