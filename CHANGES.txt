@@ -1,4 +1,4 @@
-1.0.0 (unreleased)
+1.0.0 (2015-07-12)
 ==================
 
 - Preparing for release on pypi
