@@ -27,7 +27,7 @@ cpdef orient2d( pa,  pb,  pc):
 
     :Example:
 
-    >>> from predicates import orient2d, incircle
+    >>> from geompreds import orient2d, incircle
     >>> orient2d( (0, 0), (10, 0), (10, 10)) # left turn, looking from above
     100.0
     >>> orient2d( (0, 0), (10, 0), (20, 0)) # straight
@@ -64,7 +64,7 @@ cpdef incircle( pa,  pb,  pc,  pd):
 
     :Example:
     
-    >>> from predicates import orient2d, incircle
+    >>> from geompreds import orient2d, incircle
     >>> incircle((0,0), (10,0), (0,10), (0,10)) # on boundary
     0.0
     >>> incircle((0,0), (10,0), (0,10), (1,1)) # inside, value positive

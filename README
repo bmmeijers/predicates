@@ -13,6 +13,27 @@ Installation
 Usage
 -----
 
+Many computational geometry applications use numerical tests known as the 
+orientation and incircle tests. The orientation test determines whether a point
+lies to the left of, to the right of, or on a line or plane defined by other
+points. The incircle test determines whether a point lies inside, outside, or
+on a circle defined by other points.
+
+    >>> from geompreds import orient2d, incircle
+    >>> orient2d( (0, 0), (10, 0), (10, 10)) # left turn, looking from above
+    100.0
+    >>> orient2d( (0, 0), (10, 0), (20, 0)) # straight
+    0.0
+    >>> orient2d( (0, 0), (10, 0), (10, -10)) # right turn, looking from above
+    -100.0
+
+    >>> incircle((0,0), (10,0), (0,10), (0,10)) # on boundary
+    0.0
+    >>> incircle((0,0), (10,0), (0,10), (1,1)) # inside, value positive
+    1800.0
+    >>> incircle((0,0), (10,0), (0,10), (-100,-100)) # outside, value negative
+    -2200000.0
+
 
 Changelog
 ---------
