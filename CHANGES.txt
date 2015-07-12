@@ -1,7 +1,7 @@
 1.0.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Preparing for release on pypi
 
 
 0.1.2 (2015-07-12)
