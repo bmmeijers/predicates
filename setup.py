@@ -76,13 +76,27 @@ setup(
     name = "geompreds",
     version = get_version(),
     author = "Martijn Meijers",
-    author_email = "b dot m dot meijers at tudelft dot nl",
+    author_email = "b.m.meijers@tudelft.nl",
+    description = ("Adaptive Precision Floating-Point Arithmetic and "
+                   "Fast Robust Predicates for Computational Geometry "
+                   "for Python"),
     license = "MIT license",
-    description = """Adaptive Precision Floating-Point Arithmetic and 
-    Fast Robust Predicates for Computational Geometry for Python""",
     url = "https://bitbucket.org/bmmeijers/predicates/",
     package_dir = {'':'src'},
-#     cmdclass = {'build_ext': build_ext},
     packages = ['geompreds',],
     ext_modules = ext_modules,
+    classifiers = [
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Information Technology",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Cython",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: Microsoft :: Windows",
+    ],
 )

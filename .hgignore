@@ -7,3 +7,5 @@ syntax: regexp
 ^build$
 syntax: regexp
 ^src/geompreds\.egg-info$
+syntax: regexp
+^dist$
