@@ -96,6 +96,7 @@ setup(
         "Programming Language :: Cython",
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Scientific/Engineering :: GIS",
         "Operating System :: POSIX :: Linux",
         "Operating System :: Microsoft :: Windows",
     ],
