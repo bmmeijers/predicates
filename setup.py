@@ -1,3 +1,4 @@
+from __future__ import print_function
 import ez_setup
 ez_setup.use_setuptools()
 from setuptools import setup, find_packages, Extension
@@ -55,18 +56,18 @@ elif sys.platform.startswith('linux'):
 
 if cython_available:
     # cythonize the source
-    ext_modules = cythonize([Extension("geompreds._geompreds", 
+    ext_modules = cythonize([Extension("geompreds._geompreds",
         define_macros = macros,
-        sources = ["src/geompreds/_geompreds.pyx", 
+        sources = ["src/geompreds/_geompreds.pyx",
             "src/geompreds/pred.c"],
         extra_compile_args=args,
         extra_link_args=args,
         include_dirs=['src/geompreds'])])
 else:
     # use provided c file
-    ext_modules = [Extension("geompreds._geompreds", 
+    ext_modules = [Extension("geompreds._geompreds",
         define_macros = macros,
-        sources = ["src/geompreds/_geompreds.c", 
+        sources = ["src/geompreds/_geompreds.c",
             "src/geompreds/pred.c"],
         extra_compile_args=args,
         extra_link_args=args,
