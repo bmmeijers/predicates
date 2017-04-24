@@ -1,7 +1,7 @@
 1.0.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Make setup compatible with Py3k (Thanks to Armin Samii).
 
 
 1.0.1 (2015-07-30)
