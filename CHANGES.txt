@@ -1,4 +1,4 @@
-1.0.2 (unreleased)
+1.0.2 (2017-04-24)
 ==================
 
 - Make setup compatible with Py3k (Thanks to Armin Samii).
