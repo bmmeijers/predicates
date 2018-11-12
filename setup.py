@@ -1,5 +1,3 @@
-import ez_setup
-ez_setup.use_setuptools()
 from setuptools import setup, find_packages, Extension
 import os
 import sys
@@ -72,33 +70,36 @@ else:
         extra_link_args=args,
         include_dirs=['src/geompreds'])]
 
-setup(
-    name = "geompreds",
-    version = get_version(),
-    author = "Martijn Meijers",
-    author_email = "b.m.meijers@tudelft.nl",
-    description = ("Adaptive Precision Floating-Point Arithmetic and "
-                   "Fast Robust Predicates for Computational Geometry "
-                   "for Python"),
-    license = "MIT license",
-    url = "https://bitbucket.org/bmmeijers/predicates/",
-    package_dir = {'':'src'},
-    packages = ['geompreds',],
-    ext_modules = ext_modules,
-    classifiers = [
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Developers",
-        "Intended Audience :: Information Technology",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Cython",
-        "Topic :: Software Development :: Libraries",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Scientific/Engineering :: GIS",
-        "Operating System :: POSIX :: Linux",
-        "Operating System :: Microsoft :: Windows",
-    ],
-)
+
+if __name__ == "__main__":
+    setup(
+        name = "geompreds",
+        version = get_version(),
+        author = "Martijn Meijers",
+        author_email = "b.m.meijers@tudelft.nl",
+        description = ("Adaptive Precision Floating-Point Arithmetic and "
+                       "Fast Robust Predicates for Computational Geometry "
+                       "for Python"),
+        license = "MIT license",
+        url = "https://bitbucket.org/bmmeijers/predicates/",
+        package_dir = {'':'src'},
+        packages = ['geompreds',],
+        ext_modules = ext_modules,
+        test_suite="geompreds.tests",
+        classifiers = [
+            "Development Status :: 4 - Beta",
+            "Intended Audience :: Developers",
+            "Intended Audience :: Information Technology",
+            "License :: OSI Approved :: MIT License",
+            "Operating System :: OS Independent",
+            "Programming Language :: Python",
+            "Programming Language :: Python :: 2.7",
+            "Programming Language :: Python :: 3.6",
+            "Programming Language :: Cython",
+            "Topic :: Software Development :: Libraries",
+            "Topic :: Software Development :: Libraries :: Python Modules",
+            "Topic :: Scientific/Engineering :: GIS",
+            "Operating System :: POSIX :: Linux",
+            "Operating System :: Microsoft :: Windows",
+        ],
+    )

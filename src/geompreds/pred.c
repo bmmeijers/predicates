@@ -495,7 +495,7 @@ int test_double(int verbose)
   while (dstore(1.0 + x/2.0) != 1.0)
     x /= 2.0;
   if (verbose) 
-    (void)printf("  machine epsilon = %13.5le ", x);
+    (void)printf("  machine epsilon = %64.100f ", x);
 
   if (x == (double)fppow2(-52)) {
     if (verbose)

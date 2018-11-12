@@ -1,5 +1,3 @@
-exactinit(0)
-
 cpdef _exactinit(bint verbose):
     """Initialise the predicate computation
 

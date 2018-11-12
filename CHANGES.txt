@@ -1,7 +1,9 @@
 1.0.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- ⭐ _exactinit now called in __init__.py, instead of in compiled lib.
+- ⭐ Moved tests into package folder.
+- ⭐ Removed ez_setup.py.
 
 
 1.0.2 (2017-04-24)
